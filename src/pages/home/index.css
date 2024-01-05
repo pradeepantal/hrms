@@ -126,6 +126,7 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
   }
   .homepg {
     position: relative;
@@ -134,7 +135,7 @@
   .homepg::before {
     content: "";
     position: absolute;
-    top: 10%;
+    top: 11%;
     left: 15%;
     width: 70%;
     height: 100vh;

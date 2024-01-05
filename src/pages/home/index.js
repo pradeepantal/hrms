@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import '../home/index.css';
+import '../home/index.css';  
 
 export default function HomePage() {
   const username = "Paras Verma";
@@ -50,6 +50,7 @@ export default function HomePage() {
     
       <input type="button" className='holidayBtn' onClick={holiday} value="HOLIDAYS" />
     </div>
+    
     </div>
   );
 }
