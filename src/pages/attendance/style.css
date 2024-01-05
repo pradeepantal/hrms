@@ -48,6 +48,9 @@ th {
     border-bottom: 1px solid black;
     background: #D9D9D980;
     color: #363636;
+    /* border: 1px solid;
+    padding: 8px;
+    text-align: center; */
 }
 
 td {

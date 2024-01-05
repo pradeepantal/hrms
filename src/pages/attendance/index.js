@@ -2,9 +2,14 @@ import React from "react"
 import Image from 'next/image'
 import calendar from '../../assets/calendar.png'
 import picture from '../../assets/picture.png'
+import { useEffect } from 'react';
 import './style.css'
 
+
 export default function Attendance() {
+    function addAttendance(){
+
+    }
 
     return (
 
@@ -64,17 +69,14 @@ export default function Attendance() {
                             <td> <Image src={calendar} style={{borderRadius:50}}/> 4-Jan-2024</td>
                             <td> <span className="abs">Absent </span></td>
                         </tr>
-                    </tbody>
-          
+                    </tbody>          
                 </table>
 
             </div>
             <br /> <br />
             <div className="btn-atd">
-                <button className="btn" type="submit"> ADD  ATTENDANCE </button>
+                <button className="btn" type="submit" onClick={addAttendance}> ADD  ATTENDANCE </button>
             </div>
-
-
         </div>
     )
 }
