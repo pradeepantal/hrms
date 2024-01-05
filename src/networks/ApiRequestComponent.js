@@ -4,19 +4,21 @@ import { useState } from 'react';
 export default function ApiRequestComponent() {
   const [response, setResponse] = useState(null);
 
-  const makeApiRequest = async () => {
+  const makeApiRequest = async (username, password) => {
+
     const url = 'http://122.176.50.200:8081/api/method/login';
 
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Cookie': 'full_name=Administrator; sid=f5bd6fb50bac6bcb0d234df16d3906913b6968c695bed85f75469873; system_user=yes; user_id=Administrator; user_image='
+      'Cookie': 'full_name=Administrator; sid=e10759f1b56e6cd7d9830d28518a07ce803d5007b385637f82df9ccc; system_user=yes; user_id=Administrator; user_image='
     };
 
     const data = {
-      "usr": "Administrator",
-      "pwd": "abcd1234"
+      "usr": username,
+      "pwd": password
     };
+
 
     try {
       const apiResponse = await fetch(url, {

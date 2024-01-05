@@ -6,7 +6,6 @@ export default function LoginValidationComponents() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
@@ -15,28 +14,17 @@ export default function LoginValidationComponents() {
 
       case !username && !password:
         newErrors.username = 'Username is required.';
-
-        if (!password && password.length > 6) {
-          newErrors.success = 'You logged in successfully';
-        }
         break;
-
       case !username:
         newErrors.username = 'Username is required.';
         break;
-
       case !password:
         newErrors.password = 'Password is required.';
         break;
-
       case password.length < 6:
         newErrors.password = 'Password must be at least 6 characters.';
         break;
-
       default:
-        if (username) {
-          newErrors.success = 'You logged in successfully';
-        }
         break;
     }
 
@@ -58,8 +46,7 @@ export default function LoginValidationComponents() {
   };
 
   const handleSubmit = () => {
-    setErrors({ success: '' });
-    apiComponent.makeApiRequest();
+    apiComponent.makeApiRequest(username, password);
   };
 
   return {

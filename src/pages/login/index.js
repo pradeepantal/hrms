@@ -70,17 +70,14 @@ export default function Login() {
             type="submit"
             class="rounded-md bg-[#36728B] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#2D5F75] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#36728B]"
             style={{ width: '160px', height: '47' }}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               validationComponent.validateForm();
             }}>
             Login
           </button>
         </div>
-        <div className="flex flex-col items-center">
-          {validationComponent.errors.success && (
-            <label className='text-green-500 mt-2'>{validationComponent.errors.success}</label>
-          )}
-        </div>
+
       </form>
     </div>
 
