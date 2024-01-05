@@ -1,7 +1,11 @@
-import Image from 'next/image'
+import React from 'react';
 
-export default function HomePage() {
+export default function Home() {
   return (
-   <div>Home PAGE</div>
-  )
+    <main>
+      <h1>Home Page</h1>
+      <a href="/login">Go to Login Page</a>
+    </main>
+  );
 }
+
