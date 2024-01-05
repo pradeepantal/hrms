@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import HttpService from "../../src/utilities/api"
+import { useRouter } from 'next/router';
+
 export default function LoginValidationComponents() {
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const router= useRouter();
 
   const validateForm = () => {
     const newErrors = {};
+    
 
     switch (true) {
 
@@ -45,7 +49,7 @@ export default function LoginValidationComponents() {
   };
 
   const handleSubmit = () => {
-    let uri ="http://122.176.50.200:8081/api/method/login"
+    let uri ="/api/method/login"
     const data = {
       "usr": username,
       "pwd": password
@@ -57,7 +61,12 @@ export default function LoginValidationComponents() {
      // 'Cookie': 'full_name=Administrator; sid=e10759f1b56e6cd7d9830d28518a07ce803d5007b385637f82df9ccc; system_user=yes; user_id=Administrator; user_image='
     };
 
-    HttpService.post(uri, headers, data)
+  HttpService.post(uri,  data).then((response) =>{
+    console.log(response);
+    if(response.status==200){
+      router.push("home");
+    }
+  })
   };
 
   return {

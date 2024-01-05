@@ -1,34 +1,30 @@
 import axios from "axios";
 
 class HttpService {
-
   constructor() {
-    //const token = window.localStorage.getItem("token");
+    const token = this.getTokenFromLocalStorage();
     const service = axios.create({
-      baseURL:'http://122.176.50.200:8081'
-      // headers: token
-      //   ? {
-      //       Authorization: `Bearer ${token}`,
-      //     }
-      //   : {},
+      baseURL: 'http://122.176.50.200:8081',
+      headers: token
+        ? {
+            Authorization: `Bearer ${token}`,
+          }
+        : {},
     });
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
 
     this.service = service;
-
   }
 
-  handleSuccess(response) {
+  handleSuccess = (response) => {
     return response;
-  }
+  };
 
-  handleError(error) {
+  handleError = (error) => {
     switch (error.response.status) {
       case 401:
-        // Token expired
-        delete this.service.defaults.headers["Authorization"];
-        window.localStorage.removeItem("token");
+        // Token expired - Handle this case appropriately, possibly by refreshing the token
         this.redirectTo("/login");
         break;
       case 404:
@@ -41,11 +37,20 @@ class HttpService {
         break;
     }
     return Promise.reject(error);
-  }
+  };
 
   redirectTo(url) {
     window.location.href = url;
   }
+
+  getTokenFromLocalStorage() {
+    // Check if window is defined (ensuring this code runs in a browser environment)
+    if (typeof window !== 'undefined') {
+      return window.localStorage.getItem("token");
+    }
+    return null; // or handle the case where window is not defined
+  }
+  
 
   get(...args) {
     return this.service.get(...args);
@@ -58,6 +63,7 @@ class HttpService {
   put(...args) {
     return this.service.put(...args);
   }
+
   patch(...args) {
     return this.service.patch(...args);
   }
