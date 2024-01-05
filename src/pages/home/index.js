@@ -1,8 +1,27 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import cookies from 'js-cookies';
+import React, { useEffect,useState } from 'react';
 import '../home/index.css';  
 
 export default function HomePage() {
+  
+  useEffect(() => {
+    const fullName = cookies.getItem('full_name');
+    const sid = cookies.getItem('sid');
+    const systemUser = cookies.getItem('system_user');
+    const userId = cookies.getItem('user_id');
+    const userImage = cookies.getItem('user_image');
+
+    const cookies_items = {
+      full_name: fullName ,
+      sid: sid ,
+      system_user: systemUser ,
+      user_id: userId ,
+      user_image: userImage ,
+    };
+
+    console.log(cookies_items);
+  }, []);
   const username = "Paras Verma";
   const profile = "SOFTWARE ENGINEER";
 
