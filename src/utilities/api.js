@@ -3,14 +3,14 @@ import axios from "axios";
 class HttpService {
 
   constructor() {
-    const token = window.localStorage.getItem("token");
+    //const token = window.localStorage.getItem("token");
     const service = axios.create({
-      baseURL:'http://122.176.50.200:8081',
-      headers: token
-        ? {
-            Authorization: `Bearer ${token}`,
-          }
-        : {},
+      baseURL:'http://122.176.50.200:8081'
+      // headers: token
+      //   ? {
+      //       Authorization: `Bearer ${token}`,
+      //     }
+      //   : {},
     });
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
@@ -57,7 +57,7 @@ class HttpService {
 
   put(...args) {
     return this.service.put(...args);
-
+  }
   patch(...args) {
     return this.service.patch(...args);
   }
