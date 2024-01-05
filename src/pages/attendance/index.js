@@ -1,7 +1,7 @@
 import React from "react"
 import Image from 'next/image'
 import calendar from '../../assets/calendar.png'
-
+import picture from '../../assets/picture.png'
 import './style.css'
 
 export default function Attendance() {
@@ -13,7 +13,7 @@ export default function Attendance() {
   <path d="M19 12H5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M12 19L5 12L12 5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg> 
-                <Image src={calendar} style={{borderRadius:50, float: "right"}}/> 
+                <Image src={picture} style={{borderRadius:50, float: "right", marginTop:-3}}/> 
             ATTENDANCE 
              </h1>
             <br/> <br/> <br/>
@@ -54,15 +54,15 @@ export default function Attendance() {
                         </tr>
                         <tr>
                             <td> <Image src={calendar} style={{borderRadius:50}}/> 4-Jan-2024</td>
-                            <td>Present</td>
+                            <td  ><span className= "prs"> Present </span></td>
                         </tr>
                         <tr>
                             <td> <Image src={calendar} style={{borderRadius:50}}/> 4-Jan-2024</td>
-                            <td>On Leave</td>
+                            <td> <span className="lev"> On Leave </span></td>
                         </tr>
                         <tr>
                             <td> <Image src={calendar} style={{borderRadius:50}}/> 4-Jan-2024</td>
-                            <td>Absent</td>
+                            <td> <span className="abs">Absent </span></td>
                         </tr>
                     </tbody>
           

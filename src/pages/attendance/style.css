@@ -13,6 +13,7 @@ h1 {
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase;
+    
 
 }
 
@@ -21,6 +22,8 @@ h1 {
     display: flex;
     /* justify-content: space-between; */
     color: #36728B;
+    text-align: center;
+    padding-left: 700px;
 }
 
 .container .year {
@@ -43,20 +46,37 @@ table {
 
 th {
     border-bottom: 1px solid black;
+    background: #D9D9D980;
+    color: #363636;
 }
 
 td {
     text-align: left;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #36728B40;
-}
+} */
 
 table, td, th {
     border: 1px solid;
     text-align: left;
     padding: 8px;
+}
+
+.prs{
+ background: #E4F5E9;
+ color: #16794C;
+
+    
+}
+.lev{
+    background: #FFE8E8;
+    color: #B52A2A;
+}
+.abs{
+    background: #FFE8E8;
+    color: #B52A2A;
 }
 
 .btn {
