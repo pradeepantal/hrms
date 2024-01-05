@@ -15,9 +15,6 @@ export default function LoginValidationComponents() {
       case !username && !password:
         newErrors.username = 'Username is required.';
         break;
-      case !username:
-        newErrors.username = 'Username is required.';
-        break;
       case !password:
         newErrors.password = 'Password is required.';
         break;
