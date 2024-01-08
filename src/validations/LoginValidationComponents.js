@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import ApiRequestComponent from '../networks/ApiRequestComponent';
+import { useRouter } from 'next/router';
+import { setLoginSession } from '@/helper/helper';
 
 export default function LoginValidationComponents() {
   const apiComponent = ApiRequestComponent();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState(null);
 
-  const validateForm = () => {
+  const router = useRouter();
+
+  const redirectToHome = () => {
+    router.push('/leave');
+  };
+
+  const validateForm = async () => {
     const newErrors = {};
 
     switch (true) {
@@ -28,9 +37,25 @@ export default function LoginValidationComponents() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      handleSubmit();
+      try {
+        const apiResponse = await apiComponent.makeApiRequest(username, password);
+        if (apiResponse?.message === 'Logged In') {
+          try {
+            const userData = { "isLoggedIn": true };
+            setLoginSession(userData);
+            redirectToHome();
+          } catch (error) {
+            setApiError(apiResponse?.message);
+          }
+        } else {
+          setApiError(apiResponse?.message);
+        }
+
+      } catch (error) {
+        setApiError(error);
+      }
     }
-  };
+  }
 
   const handleUsernameChange = (e) => {
     const updatedValue = e.target.value.replace(/\s/g, '');
@@ -42,9 +67,6 @@ export default function LoginValidationComponents() {
     setPassword(updatedValue);
   };
 
-  const handleSubmit = () => {
-    apiComponent.makeApiRequest(username, password);
-  };
 
   return {
     username,
@@ -54,6 +76,7 @@ export default function LoginValidationComponents() {
     errors,
     validateForm,
     handleUsernameChange,
-    handlePasswordChange
+    handlePasswordChange,
+    apiError
   };
 }

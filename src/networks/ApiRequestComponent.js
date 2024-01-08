@@ -1,8 +1,5 @@
-// src/ApiRequestComponent.js
-import { useState } from 'react';
-
 export default function ApiRequestComponent() {
-  const [response, setResponse] = useState(null);
+  // const [response, setResponse] = useState(null);
 
   const makeApiRequest = async (username, password) => {
 
@@ -28,16 +25,14 @@ export default function ApiRequestComponent() {
       });
 
       const result = await apiResponse.json();
-      setResponse(result);
+      return result
 
-      console.log(result);
     } catch (error) {
       console.error('Error making API request:', error);
     }
   };
 
   return {
-    response,
     makeApiRequest,
   };
 }

@@ -1,11 +1,18 @@
-import React from 'react';
+import { useRouter } from 'next/router';
+import { getLoginSession } from '../../helper/helper'
 
 export default function Home() {
-  return (
-    <main>
-      <h1>Home Page</h1>
-      <a href="/login">Go to Login Page</a>
-    </main>
-  );
+  const router = useRouter();
+
+
+  const userData = getLoginSession();
+
+  if (!userData) {
+    router.push('/leave');
+    return null;
+  } else {
+    router.push('/login');
+  }
+
 }
 

@@ -3,11 +3,22 @@ import LdtLogo from '../../assets/images/ldtlogo.svg';
 import Image from 'next/image';
 import '../../app/globals.css';
 import LoginValidationComponents from '../../validations/LoginValidationComponents'
-
-
+import { getLoginSession } from '../../helper/helper'
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function Login() {
   const validationComponent = LoginValidationComponents();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const userData = getLoginSession();
+
+    if (userData?.isLoggedIn) {
+      router.push('/leave');
+    }
+  }, []);
 
   return (
 
@@ -64,7 +75,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div class="mt-6 flex items-center justify-center gap-x-6"
+        <div class="flex items-center justify-center gap-x-6"
           style={{ marginTop: "52px" }}>
           <button
             type="submit"
@@ -76,8 +87,11 @@ export default function Login() {
             }}>
             Login
           </button>
-        </div>
 
+        </div>
+        <div class="mt-5 flex items-center justify-center gap-x-6">
+          <div style={{ color: 'red' }}>{validationComponent.apiError}</div>
+        </div>
       </form>
     </div>
 
