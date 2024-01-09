@@ -43,6 +43,7 @@ h1 {
     top: 50px;
 }
 
+
 table {
     height: 22px;
     width: 100%;
@@ -64,25 +65,27 @@ td {
     background-color: #36728B40;
 } */
 
-table, td, th {
+table,
+td,
+th {
     border: 1px solid;
     text-align: left;
     padding: 8px;
 }
 
-.prs {
+.apr {
     background: #E4F5E9;
     color: #16794C;
 
 
 }
 
-.lev {
+.pen {
     background: #FFE8E8;
     color: #B52A2A;
 }
 
-.abs {
+.cnl {
     background: #FFE8E8;
     color: #B52A2A;
 }
