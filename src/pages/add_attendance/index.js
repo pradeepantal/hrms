@@ -65,7 +65,7 @@ export default function AddAttendance() {
             fontSize: '16px',
             fontWeight: '400'
           }}>
-            <div>Attendance Date:</div>
+            <div>Attendance Type:</div>
             <div><SelectAttendanceTypeComponents /></div>
 
           </div>
