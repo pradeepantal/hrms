@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import HttpService from "../../src/utilities/api"
 import { useRouter } from 'next/router';
+import { setLoginSession } from '@/helper/helper';
 
 export default function LoginValidationComponents() {
 
@@ -10,10 +11,6 @@ export default function LoginValidationComponents() {
   const [apiError, setApiError] = useState(null);
 
   const router = useRouter();
-
-  const redirectToHome = () => {
-    router.push('/leave');
-  };
 
   const validateForm = async () => {
     const newErrors = {};
@@ -37,24 +34,11 @@ export default function LoginValidationComponents() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      handleSubmit();
-      // try {
-      //   const apiResponse = await apiComponent.makeApiRequest(username, password);
-      //   if (apiResponse?.message === 'Logged In') {
-      //     try {
-      //       const userData = { "isLoggedIn": true };
-      //       setLoginSession(userData);
-      //       redirectToHome();
-      //     } catch (error) {
-      //       setApiError(apiResponse?.message);
-      //     }
-      //   } else {
-      //     setApiError(apiResponse?.message);
-      //   }
-
-      // } catch (error) {
-      //   setApiError(error);
-      // }
+      const data = {
+        "usr": username,
+        "pwd": password
+      };
+      handleSubmit('/api/method/login', data);
     }
   }
 
@@ -68,11 +52,19 @@ export default function LoginValidationComponents() {
     setPassword(updatedValue);
   };
 
-  const handleSubmit = () => {
+
+  const handleSubmit = (uri, data) => {
     HttpService.post(uri, data).then((response) => {
-      console.log(response);
-      if (response.status == 200) {
-        router.push("home");
+      if (response?.status == 200) {
+        console.log(response);
+        const userData = { "isLoggedIn": true };
+        setLoginSession(userData);
+        router.push("/home");
+      } else {
+        console.log(response);
+        const userData = { "isLoggedIn": false };
+        setLoginSession(userData);
+        setApiError(response);
       }
     })
   };

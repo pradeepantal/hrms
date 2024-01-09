@@ -7,8 +7,8 @@ class HttpService {
       baseURL: 'http://122.176.50.200:8081',
       headers: token
         ? {
-            Authorization: `Bearer ${token}`,
-          }
+          Authorization: `Bearer ${token}`,
+        }
         : {},
     });
 
@@ -50,7 +50,7 @@ class HttpService {
     }
     return null; // or handle the case where window is not defined
   }
-  
+
 
   get(...args) {
     return this.service.get(...args);

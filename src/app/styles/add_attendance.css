@@ -1,0 +1,12 @@
+.horizontal-divider {
+  width: 360px;
+}
+
+.date-time-rounded {
+  width: 175px;
+  border-color: black;
+}
+
+.date-time-icon-margin {
+  margin: 2px;
+}

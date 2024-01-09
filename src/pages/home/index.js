@@ -1,10 +1,11 @@
-import Image from 'next/image';
 import cookies from 'js-cookies';
 import React, { useEffect, useState } from 'react';
 import '../home/index.css';
+import { getLoginSession } from '../../helper/helper';
+import { useRouter } from 'next/router';
 
 export default function HomePage() {
-
+  const router = useRouter();
   useEffect(() => {
     const fullName = cookies.getItem('full_name');
     const sid = cookies.getItem('sid');
@@ -21,6 +22,9 @@ export default function HomePage() {
     };
 
     console.log(cookies_items);
+    const userData = getLoginSession(); if (!userData?.isLoggedIn) {
+      router.push('/login');
+    }
   }, []);
   const username = "Paras Verma";
   const profile = "SOFTWARE ENGINEER";
@@ -41,6 +45,7 @@ export default function HomePage() {
   };
 
   return (
+
     <div className='homepg'>
       <div className='head'>
         <h1>HOME</h1>
@@ -71,5 +76,6 @@ export default function HomePage() {
       </div>
 
     </div>
+
   );
 }
