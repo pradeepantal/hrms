@@ -21,29 +21,26 @@ export default function Login() {
   }, []);
 
   return (
-
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+    <div className="flex flex-col items-center justify-center h-screen">
       <Image src={LdtLogo} alt="Logo" />
-      <div style={{ marginTop: "18px" }}>
+      <div className="mt-2">
         <main>
           <h2 className="ldt-label-login">LDT TECHNOLOGY</h2>
         </main>
       </div>
 
       <form onSubmit={(e) => { e.preventDefault(); validationComponent.validateForm(); }}>
+
         <div className="flex flex-col items-start">
-          <div className={`flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md ${validationComponent.errors.username && 'border-red-500'}`}
-            style={{ width: '338px', marginTop: '102px' }}>
+          <div className="flex mt-24 h-12 w-80 rounded-md shadow-sm ring-1 ring-inset ring-black focus-within:ring-2">
             <input
               id='username'
               type='text'
               placeholder='USERNAME'
               name='username'
-
-              className='block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
+              className='block pl-3 text-sm text-black flex-1 border-0 bg-transparent py-1.5 placeholder:text-gray-400'
               value={validationComponent.username}
               onChange={(e) => validationComponent.handleUsernameChange(e)}
-              style={{ paddingLeft: '10px', fontSize: '13px', '::placeholder': 'rgba(0, 0, 0, 0.50)' }}
             />
           </div>
           {validationComponent.errors.username && (
@@ -51,36 +48,35 @@ export default function Login() {
           )}
 
         </div>
-        <div>
-          <div className="flex flex-col items-start">
-            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
-              style={{ width: '338px', marginTop: "20px" }}>
-              <input id='password' type="password" placeholder="PASSWORD" name="username" autocomplete="username" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                value={validationComponent.password}
-                onChange={(e) => validationComponent.handlePasswordChange(e)}
-                style={{ paddingLeft: '10px', fontSize: '13px', '::placeholder': 'rgba(0, 0, 0, 0.50)' }}>
-              </input>
 
 
-            </div>
-            {validationComponent.errors.password && (
-              <label className='text-red-500 mt-2'>{validationComponent.errors.password}</label>
-            )}
+        <div className="flex flex-col items-start">
+          <div className="flex mt-5 rounded-md h-12 shadow-sm w-80 ring-1 ring-inset ring-black focus-within:ring-2"
+          >
+            <input id='password' type="password" placeholder="PASSWORD" name="username" autoComplete="username"
+              className="block pl-3 flex-1 text-sm border-0 bg-transparent py-1.5 text-black placeholder:text-gray-400"
+              value={validationComponent.password}
+              onChange={(e) => validationComponent.handlePasswordChange(e)}>
+            </input>
+
           </div>
-          <div class="flex items-center justify-end gap-x-6 lg:justify-end"
-            style={{ marginTop: "6px" }}>
-            <a href="#" class="text-blue-500 text-center font-roboto text-sm font-semibold font-normal tracking-[0.52px] capitalize">
-              Forgot Password?
-            </a>
-          </div>
+          {validationComponent.errors.password && (
+            <label className='text-red-500 mt-2'>{validationComponent.errors.password}</label>
+          )}
         </div>
 
-        <div class="flex items-center justify-center gap-x-6"
-          style={{ marginTop: "52px" }}>
+
+        <div className="flex justify-end m-1">
+          <a href="#" className="text-blue-500 text-sm">
+            Forgot Password?
+          </a>
+
+        </div>
+
+        <div className="flex items-center justify-center gap-x-6 m-12">
           <button
             type="submit"
-            class="rounded-md bg-[#36728B] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#2D5F75] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#36728B]"
-            style={{ width: '160px', height: '47' }}
+            className="rounded-lg w-40 bg-[#36728B] h-12 px-3 py-2 text-sm font-semibold text-white shadow-sm"
             onClick={(e) => {
               e.preventDefault();
               validationComponent.validateForm();
@@ -89,8 +85,8 @@ export default function Login() {
           </button>
 
         </div>
-        <div class="mt-5 flex items-center justify-center gap-x-6">
-          <div style={{ color: 'red' }}>{validationComponent.apiError}</div>
+        <div className="mt-5 flex items-center justify-center gap-x-6 text-red-800">
+          {validationComponent.apiError}
         </div>
       </form>
     </div>

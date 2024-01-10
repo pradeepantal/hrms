@@ -22,7 +22,6 @@ export default function AddAttendance() {
 
   const [isCalendarVisible, setCalendarVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [isAttendanceTypeDialogVisible, setAttendanceTypeDialogVisible] = useState(false);
 
 
   const handleDateChange = (date) => {
@@ -49,9 +48,9 @@ export default function AddAttendance() {
     setSelectedDate(null);
     const userData = getLoginSession();
 
-    if (!userData?.isLoggedIn) {
-      router.push('/login');
-    }
+    // if (!userData?.isLoggedIn) {
+    //   router.push('/login');
+    // }
   }, []);
 
   return (
