@@ -46,7 +46,7 @@ export default function AddAttendance() {
 
   useEffect(() => {
     setSelectedDate(null);
-    const userData = getLoginSession();
+    //const userData = getLoginSession();
 
     // if (!userData?.isLoggedIn) {
     //   router.push('/login');
@@ -54,29 +54,18 @@ export default function AddAttendance() {
   }, []);
 
   return (
-    <div style={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between'
-    }}>
 
+    <div className="h-screen flex flex-col justify-between">
       <div id='toolbar'>
         <ToolbarComponents showBackArrow={true} title="ADD ATTENDANCE" />
       </div>
 
-      <div id='candidateImage' style={{ marginTop: "30px" }}>
+      <div id='candidateImage' className="mt-7">
         <RoundedImageComponents />
 
         <div className="m-5">
-          <div style={{
-            marginTop: '68px',
-            display: 'flex', flexDirection: 'row', justifyContent: 'space-between', color: '#363636',
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '16px',
-            fontWeight: '400'
+          <div className="mt-20 flex flex-row justify-between text-base font-normal text-gray-600">
 
-          }}>
             <div>Attendance Date:</div>
             <div><SelectDateComponents onClick={handleClickCalenderButton} selectedDate={selectedDate} /></div>
 
@@ -84,12 +73,8 @@ export default function AddAttendance() {
 
           <div className="border-b border-gray-300 my-3 mx-auto"></div>
 
-          <div style={{
-            display: 'flex', flexDirection: 'row', justifyContent: 'space-between', color: '#363636',
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '16px',
-            fontWeight: '400'
-          }}>
+          <div className="flex flex-row justify-between text-base font-normal text-gray-600">
+
             <div>Attendance Type:</div>
             <div><SelectAttendanceTypeComponents /></div>
 
@@ -102,23 +87,12 @@ export default function AddAttendance() {
       </div>
 
 
-      <div id='emptySpace' style={{ display: 'flex', justifyContent: 'center', position: 'relative' }} >
+      <div id='emptySpace' className='flex justify-center relative'>
 
         <main style={{ ...ribeye.style }}>
-          <div style={{
-            paddingTop: '60px',
-            paddingBottom: '60px',
-            width: '196px',
-            color: 'rgba(54, 114, 139, 0.50)',
-            textAlign: 'center',
-            fontSize: '36px',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: 'normal',
-            letterSpacing: '1.44px',
-            textTransform: 'capitalize',
-          }}>
-            Have a great day!
+          <div
+            className='flex justify-center leading-normal pt-14 pb-14 w-36 text-center text-4xl not-italic font-normal have_a_nice_day_color'>
+            Have A Great Day!
           </div>
         </main>
 
@@ -129,16 +103,14 @@ export default function AddAttendance() {
           )}
 
         </div>
-      </div>
+      </div >
       <div id='submitButton' className="m-5">
-        <button className="h-10 w-full flex-shrink-0 bg-[#36728B80] text-black" style={{ border: '2px solid #00000080', borderRadius: '6px' }}>
-          <div style={{ color: 'rgba(0, 0, 0, 0.50)', fontSize: '13px' }}>
-            Submit
-          </div>
+        <button className="h-10 w-full text-sm flex-shrink-0 bg-[#36728B80] text-black submit_button_color border-black border-2 rounded-md">
+          Submit
         </button>
 
       </div>
 
-    </div>
+    </div >
   );
 }

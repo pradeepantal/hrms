@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function SelectDateComponents({ onClick, selectedDate }) {
   const [localSelectedDate, setLocalSelectedDate] = useState(selectedDate);
+
   useEffect(() => {
     setLocalSelectedDate(selectedDate);
   }, [selectedDate]);
@@ -12,8 +13,6 @@ export default function SelectDateComponents({ onClick, selectedDate }) {
       onClick(localSelectedDate);
     }
   };
-
-
 
   return (
     <button
@@ -47,11 +46,17 @@ export default function SelectDateComponents({ onClick, selectedDate }) {
             paddingTop: '2px',
             paddingBottom: '1px',
             width: '-webkit-fill-available',
-          }}
-        >
-          {localSelectedDate
-            ? localSelectedDate.toLocaleDateString('en-GB')
-            : 'DD-MM-YY'}
+          }}>
+          {localSelectedDate !== null ? (
+            <div>
+              {localSelectedDate.toLocaleDateString('en-GB')}
+            </div>
+          ) : (
+            <div>
+              DD-MM-YY
+            </div>
+          )}
+
         </div>
         <div>
           <div className="flex flex-row">

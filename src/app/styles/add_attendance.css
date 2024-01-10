@@ -10,3 +10,12 @@
 .date-time-icon-margin {
   margin: 2px;
 }
+
+.have_a_nice_day_color {
+  color: rgba(54, 114, 139, 0.50);
+  letter-spacing: 1.44px
+}
+
+.submit_button_color {
+  color: rgba(0, 0, 0, 0.50);
+}
