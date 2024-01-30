@@ -1,10 +1,13 @@
 import axios from "axios";
+import cookies from "js-cookies"
 
 class HttpService {
   constructor() {
     const token = this.getTokenFromLocalStorage();
+   
     const service = axios.create({
       baseURL: 'http://122.176.50.200:8081',
+      withCredentials: true,
       headers: token
         ? {
             Authorization: `Bearer ${token}`,
@@ -12,12 +15,14 @@ class HttpService {
         : {},
     });
 
-    service.interceptors.response.use(this.handleSuccess, this.handleError);
 
+    service.interceptors.response.use(this.handleSuccess);
     this.service = service;
   }
 
   handleSuccess = (response) => {
+//     const ch = response.headers['Set-Cookie'];
+// console.log
     return response;
   };
 
@@ -50,14 +55,15 @@ class HttpService {
     }
     return null; // or handle the case where window is not defined
   }
-  
 
+  
+  
   get(...args) {
     return this.service.get(...args);
   }
 
   post(...args) {
-    return this.service.post(...args);
+    return this.service.post(...args,);
   }
 
   put(...args) {
