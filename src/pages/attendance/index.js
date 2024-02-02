@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Image from 'next/image'
 import { useRouter } from "next/router"
 import calendar from '../../assets/calendar.png'
@@ -7,7 +7,10 @@ import './style.css'
 
 export default function Attendance() {
 
-  
+  useEffect (() => {
+
+  }
+  )
 
     const router = useRouter();
     function addAttendance() {
@@ -17,6 +20,25 @@ export default function Attendance() {
     function Arrow() {
         router.push("/home");
     }
+
+    const handleSubmit = () => {
+        let uri ="/api/method/frappe.desk.reportview.get"
+        const data = {
+        };
+    
+        const headers = {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'Accept': 'application/json',
+         // 'Cookie': 'full_name=Administrator; sid=e10759f1b56e6cd7d9830d28518a07ce803d5007b385637f82df9ccc; system_user=yes; user_id=Administrator; user_image='
+        };
+    
+      HttpService.post(uri,  data).then((response) =>{
+        console.log(response);
+        if(response.status==200){
+          router.push("/home");
+        }
+      })
+      };
 
     return (
 
